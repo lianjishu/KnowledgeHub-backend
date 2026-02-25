@@ -1,0 +1,32 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: blog-backend
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/blog}
+      auto-index-creation: false
+
+  servlet:
+    multipart:
+      max-file-size: ${MAX_FILE_SIZE:10MB}
+      max-request-size: ${MAX_FILE_SIZE:10MB}
+
+jwt:
+  secret: ${JWT_SECRET:your-secret-key-change-in-production}
+  expiration-minutes: ${JWT_EXPIRE_MINUTES:10080}
+
+upload:
+  dir: ${UPLOAD_DIR:./uploads}
+  max-file-size: ${MAX_FILE_SIZE:10485760}
+  allowed-file-types: ${ALLOWED_FILE_TYPES:jpg,jpeg,png,gif,webp}
+
+logging:
+  level:
+    root: ${LOG_LEVEL:INFO}
+    com.blog: ${LOG_LEVEL:INFO}
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
